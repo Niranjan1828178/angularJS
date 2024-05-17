@@ -1,0 +1,45 @@
+<html>
+    <title>
+        AJS square and factorial application
+    </title>
+    <head>
+        <script src="angular.min.js"></script>
+        <script>
+        var app=angular.module("mysqfct",[]);
+        app.controller("mysqfctcntrl",function($scope){
+            $scope.num=0
+            $scope.result=0
+            $scope.text='nothing of'
+            $scope.factorial=function()
+            {
+                $scope.text='factorial of'
+                if($scope.num==0)
+                {
+                    $scope.result=1
+                }
+                else{
+                    $scope.fact=1
+                    for(var i=$scope.num;i>=1;i--)
+                    {
+                        $scope.fact=$scope.fact*i
+                    }
+                    $scope.result=$scope.fact
+                }
+            }
+            $scope.square=function(){
+                $scope.text='square of'
+                $scope.result=$scope.num*$scope.num
+            }
+        });
+        </script>
+    </head>
+    <body ng-app="mysqfct">
+        <h1>angular js factorial and square application</h1>
+        <div ng-controller="mysqfctcntrl">
+            enter the number:<input type="number" ng-model="num">
+            <button ng-click="factorial()">compute factorial</button>
+            <button ng-click="square()">compute square</button>
+            {{text+" "+num+"="+result}}
+        </div>
+    </body>
+</html>

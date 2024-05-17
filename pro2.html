@@ -1,0 +1,41 @@
+<html>
+    <head>
+        <title>angular jS</title>
+        <script src="angular.min.js"></script>
+        <script>
+            var app=angular.module("listapp",[]);
+            app.controller("listctrl",function($scope){
+                 $scope.list=['milk','cheese','bread'];
+                 $scope.additem=function(){
+                    if(!$scope.addme)
+                    {
+                        return;
+                    }
+                    if($scope.list.indexOf($scope.addme)==-1)
+                    {
+                        $scope.list.push($scope.addme);
+                    }
+                    else{
+                        alert("item already exists");
+                    }
+                 }
+                 $scope.removeitem=function(x)
+                 {
+                    $scope.errortext="";
+                    $scope.list.splice(x,1);
+                 }
+            });
+        </script>
+    </head>
+    <body>
+        <h1>list applications</h1>
+        <div ng-app="listapp" ng-controller="listctrl">
+            <ul>
+                <li ng-repeat="x in list"> {{x}} <span ng-click="removeitem($index)"><small>x</small></span></li>
+            </ul>
+            <input type="text" ng-model="addme">
+            <button ng-click="additem()">ADD</button>
+            {{errortext}}
+        </div>
+    </body>
+</html>
